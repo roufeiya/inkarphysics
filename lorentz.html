@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Лоренц күшінің симуляторы</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Лоренц күші: Траектория симуляторы</h1>
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <div class="grid">
+            <article>
+                <form method="POST">
+                    <fieldset>
+                        <legend>Бөлшек (Заряд):</legend>
+                        <label for="electron">
+                            <input type="radio" id="electron" name="particle" value="electron" {% if params.particle == 'electron' %}checked{% endif %}>
+                            Электрон (-e)
+                        </label>
+                        <label for="proton">
+                            <input type="radio" id="proton" name="particle" value="proton" {% if params.particle == 'proton' %}checked{% endif %}>
+                            Протон (+e)
+                        </label>
+                    </fieldset>
+
+                    <label for="Bz">Магнит өрісі (B<sub>z</sub>), Тесла:
+                        <input type="text" id="Bz" name="Bz" value="{{ params.Bz }}">
+                    </label>
+
+                    <details open>
+                        <summary>Бастапқы жылдамдық (v) м/с (t=0)</summary>
+                        <label for="vx">v<sub>x</sub> (көлденең):
+                            <input type="text" id="vx" name="vx" value="{{ params.vx }}">
+                        </label>
+                        <label for="vy">v<sub>y</sub> (тік):
+                            <input type="text" id="vy" name="vy" value="{{ params.vy }}">
+                        </label>
+                        <label for="vz">v<sub>z</sub> (Z осі бойымен):
+                            <input type="text" id="vz" name="vz" value="{{ params.vz }}">
+                        </label>
+                    </details>
+
+                    <button type="submit" style="margin-top: 1rem;">Траекторияны есептеу</button>
+                </form>
+                <footer>
+                    <small><b>Кеңес:</b> v<sub>z</sub> = 0 деп қойып, шеңбер траекториясын көріңіз.</small>
+                </footer>
+            </article>
+
+            <figure style="margin: 0;">
+                {% if params %}
+                    <img src="{{ url_for('e_and_m.plot_lorentz_png') }}?particle={{ params.particle }}&Bz={{ params.Bz }}&vx={{ params.vx }}&vy={{ params.vy }}&vz={{ params.vz }}"
+                         alt="Лоренц күші траекториясының 3D графигі" class="plot">
+                {% else %}
+                    <div style="display: grid; place-items: center; height: 100%; border: 1px dashed var(--pico-muted-border-color); border-radius: var(--pico-border-radius);">
+                        Параметрлерді енгізіп, "Есептеу" батырмасын басыңыз.
+                    </div>
+                {% endif %}
+            </figure>
+        </div>
+    </main>
+</body>
+</html>

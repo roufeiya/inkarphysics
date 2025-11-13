@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Толқындық Интерференция</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Толқындық Интерференция (Юнг тәжірибесі)</h1>
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <div class="grid">
+            <article>
+                <header>Параметрлерді енгізіңіз:</header>
+                <form method="POST">
+                    <label for="wavelength">Толқын ұзындығы (λ), (1-10):
+                        <span id="lambda-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.lambda }}</span>
+                    </label>
+                    <input type="range" id="wavelength" name="wavelength" min="1" max="10" value="{{ params.lambda }}" step="0.1"
+                           oninput="document.getElementById('lambda-value').innerText = this.value">
+
+                    <label for="distance">Екі көздің арақашықтығы (d), (1-20):
+                        <span id="d-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.d }}</span>
+                    </label>
+                    <input type="range" id="distance" name="distance" min="1" max="20" value="{{ params.d }}" step="0.5"
+                           oninput="document.getElementById('d-value').innerText = this.value">
+
+                    <button type="submit">Интерференцияны салу</button>
+                </form>
+                <footer>
+                    <small><b>Кеңес:</b> Арақашықтықты (d) ұлғайтыңыз, жолақтар жиілей түседі.</small>
+                </footer>
+            </article>
+
+            <figure style="margin: 0;">
+                {% if params %}
+                    <img src="{{ url_for('e_and_m.plot_interference_png') }}?lambda={{ params.lambda }}&d={{ params.d }}"
+                         alt="Интерференция суреті" class="plot">
+                {% else %}
+                    <div style="display: grid; place-items: center; height: 100%; border: 1px dashed var(--pico-muted-border-color); border-radius: var(--pico-border-radius);">
+                        Параметрлерді енгізіп, "Салу" батырмасын басыңыз.
+                    </div>
+                {% endif %}
+            </figure>
+        </div>
+    </main>
+</body>
+</html>

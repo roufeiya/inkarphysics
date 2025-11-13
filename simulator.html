@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Электр өрісінің симуляторы</title>
+    <style>
+        #plot-box.dragging { cursor: grabbing; }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Электр өрісінің симуляторы</h1>
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <div class="grid">
+            <article>
+                <header><h3>Зарядтар</h3></header>
+                <form onsubmit="event.preventDefault(); updatePlotFromForm();">
+                    <h4>Заряд 1 (Оң, q+)</h4>
+                    <label>X1:
+                        <input type="text" name="x1" id="x1-input" value="{{ charges.x1 }}">
+                    </label>
+                    <label>Y1:
+                        <input type="text" name="y1" id="y1-input" value="{{ charges.y1 }}">
+                    </label>
+
+                    <h4>Заряд 2 (Теріс, q-)</h4>
+                    <label>X2:
+                        <input type="text" name="x2" id="x2-input" value="{{ charges.x2 }}">
+                    </label>
+                    <label>Y2:
+                        <input type="text" name="y2" id="y2-input" value="{{ charges.y2 }}">
+                    </label>
+
+                    <button type="submit">Координаттарды жаңарту</button>
+                </form>
+            </article>
+
+            <figure id="plot-box" style="margin: 0; cursor: grab;">
+                {% if charges %}
+                    <img src="{{ url_for('e_and_m.plot_png') }}?x1={{ charges.x1 }}&y1={{ charges.y1 }}&x2={{ charges.x2 }}&y2={{ charges.y2 }}"
+                         alt="Электр өрісінің графигі" id="plot-image">
+                {% endif %}
+                <figcaption>Кеңес: Зарядтарды тышқанмен сүйреп жылжытыңыз!</figcaption>
+            </figure>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const plotBox = document.getElementById('plot-box');
+            const plotImage = document.getElementById('plot-image');
+            const x1Input = document.getElementById('x1-input');
+            const y1Input = document.getElementById('y1-input');
+            const x2Input = document.getElementById('x2-input');
+            const y2Input = document.getElementById('y2-input');
+            if (!plotImage) return;
+            let isDragging = false;
+            let activeCharge = null;
+            function updatePlot() {
+                const x1 = x1Input.value;
+                const y1 = y1Input.value;
+                const x2 = x2Input.value;
+                const y2 = y2Input.value;
+                // Суреттің URL мекенжайын дұрыс "бөлім" арқылы сұрау
+                const newImageUrl = `{{ url_for('e_and_m.plot_png') }}?x1=${x1}&y1=${y1}&x2=${x2}&y2=${y2}`;
+                plotImage.src = newImageUrl;
+            }
+            window.updatePlotFromForm = function() { updatePlot(); }
+            function getPlotCoordinates(event) {
+                const rect = plotImage.getBoundingClientRect();
+                const x_pixel = event.clientX - rect.left;
+                const y_pixel = event.clientY - rect.top;
+                const plotWidth = plotImage.clientWidth;
+                const plotHeight = plotImage.clientHeight;
+                const plotX = (x_pixel / plotWidth) * 20 - 10;
+                const plotY = -((y_pixel / plotHeight) * 20 - 10);
+                return { x: plotX, y: plotY };
+            }
+            plotBox.addEventListener('mousedown', function(event) {
+                event.preventDefault();
+                const coords = getPlotCoordinates(event);
+                const q1 = { x: parseFloat(x1Input.value), y: parseFloat(y1Input.value) };
+                const q2 = { x: parseFloat(x2Input.value), y: parseFloat(y2Input.value) };
+                const distToQ1 = Math.sqrt(Math.pow(coords.x - q1.x, 2) + Math.pow(coords.y - q1.y, 2));
+                const distToQ2 = Math.sqrt(Math.pow(coords.x - q2.x, 2) + Math.pow(coords.y - q2.y, 2));
+                const grabRadius = 1.5;
+                if (distToQ1 < grabRadius && distToQ1 <= distToQ2) {
+                    isDragging = true; activeCharge = 1; plotBox.classList.add('dragging');
+                } else if (distToQ2 < grabRadius) {
+                    isDragging = true; activeCharge = 2; plotBox.classList.add('dragging');
+                }
+            });
+            plotBox.addEventListener('mousemove', function(event) {
+                if (!isDragging) return;
+                const coords = getPlotCoordinates(event);
+                if (activeCharge === 1) {
+                    x1Input.value = coords.x.toFixed(2); y1Input.value = coords.y.toFixed(2);
+                } else if (activeCharge === 2) {
+                    x2Input.value = coords.x.toFixed(2); y2Input.value = coords.y.toFixed(2);
+                }
+            });
+            window.addEventListener('mouseup', function(event) {
+                if (isDragging) { updatePlot(); }
+                isDragging = false; activeCharge = null; plotBox.classList.remove('dragging');
+            });
+        });
+    </script>
+</body>
+</html>

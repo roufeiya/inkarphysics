@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <title>Электр өрісінің теориясы</title>
+</head>
+<body>
+    <main class="container">
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <article>
+            <header>
+                <h1 style="text-align: center;">Электр өрісі және Кулон заңы</h1>
+            </header>
+
+            <p><strong>Электр өрісі</strong> – бұл электр заряды бар әрбір дененің айналасында пайда болатын материяның ерекше түрі. Бұл өріс басқа зарядтарға күшпен әсер етеді.</p>
+
+            <h3>1. Кулон заңы</h3>
+            <p>Екі нүктелік <b>q₁</b> және <b>q₂</b> зарядтарының арасындағы өзара әрекеттесу күші (<b>F</b>) олардың арақашықтығының (<b>r</b>) квадратына кері пропорционал және зарядтардың көбейтіндісіне тура пропорционал:</p>
+
+            <blockquote>
+                <strong>F = k · |q₁ · q₂| / r²</strong>
+            </blockquote>
+            <p>Мұндағы <b>k</b> – пропорционалдық коэффициент (шамамен 9·10⁹ Н·м²/Кл²).</p>
+
+            <h3>2. Электр өрісінің кернеулігі (E)</h3>
+            <p>Электр өрісінің кернеулігі – бұл өрістің күштік сипаттамасы. Ол өрістің берілген нүктесіне орналастырылған <b>сынақ зарядқа (q)</b> әсер ететін күштің (<b>F</b>) сол зарядтың шамасына қатынасымен өлшенеді:</p>
+            <blockquote>
+                <strong>E = F / q</strong>
+            </blockquote>
+            <p>Нүктелік зарядтың (<b>Q</b>) өрісінің кернеулігі:</p>
+            <blockquote>
+                <strong>E = k · |Q| / r²</strong>
+            </blockquote>
+
+            <h3>3. Суперпозиция принципі</h3>
+            <p>Егер өрісті бірнеше заряд тудырса, онда кез келген нүктедегі қорытқы өріс кернеулігі (<b>E</b>) әрбір зарядтың жеке-жеке тудыратын өріс кернеуліктерінің (<b>E₁</b>, <b>E₂</b>, ...) **векторлық** қосындысына тең болады:</p>
+            <blockquote>
+                <strong>E = E₁ + E₂ + E₃ + ...</strong>
+            </blockquote>
+            <p>Біздің симулятор дәл осы принцип бойынша жұмыс істейді: ол әрбір нүктеде екі зарядтан келетін өріс векторларын қосады.</p>
+
+            <h3>Бейне түсіндірме (Видео)</h3>
+            <p>Бұл тақырыпты толығырақ түсіну үшін осы видеоны қараңыз:</p>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1em 0;">
+                <iframe
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--pico-border-radius);"
+                    width="560" height="315"
+                    src="https://www.youtube.com/embed/QEQ6u94D-JM"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <footer style="margin-top: 2rem;">
+                <a href="{{ url_for('e_and_m.simulator_page') }}" role="button" class="primary">
+                    Енді симуляторды байқап көріңіз &rarr;
+                </a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Магнит өрісінің симуляторы</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Магнит өрісінің симуляторы (Био-Савар Заңы)</h1>
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <div class="grid">
+            <article>
+                <form method="POST">
+                    <header>
+                        Ток бағыты: <b>Оң (+)</b> = "бізден әрі" (X), <b>Теріс (-)</b> = "бізге қарай" (•)
+                    </header>
+
+                    <h6>1-ші Өткізгіш</h6>
+                    <div class="grid">
+                        <label>X1: <input type="text" name="x1" value="{{ params.x1 }}"></label>
+                        <label>Y1: <input type="text" name="y1" value="{{ params.y1 }}"></label>
+                    </div>
+                    <label>Ток I<sub>1</sub> (Ампер): <input type="text" name="i1" value="{{ params.i1 }}"></label>
+
+                    <h6 style="margin-top: 1rem;">2-ші Өткізгіш</h6>
+                    <div class="grid">
+                        <label>X2: <input type="text" name="x2" value="{{ params.x2 }}"></label>
+                        <label>Y2: <input type="text" name="y2" value="{{ params.y2 }}"></label>
+                    </div>
+                    <label>Ток I<sub>2</sub> (Ампер): <input type="text" name="i2" value="{{ params.i2 }}"></label>
+
+                    <h6 style="margin-top: 1rem;">3-ші Өткізгіш (0 = өшірулі)</h6>
+                    <div class="grid">
+                        <label>X3: <input type="text" name="x3" value="{{ params.x3 }}"></label>
+                        <label>Y3: <input type="text" name="y3" value="{{ params.y3 }}"></label>
+                    </div>
+                    <label>Ток I<sub>3</sub> (Ампер): <input type="text" name="i3" value="{{ params.i3 }}"></label>
+
+                    <button type="submit" style="margin-top: 1rem;">Магнит өрісін салу</button>
+                </form>
+            </article>
+
+            <figure style="margin: 0;">
+                {% if params %}
+                    <img src="{{ url_for('e_and_m.plot_biot_savart_png') }}?x1={{ params.x1 }}&y1={{ params.y1 }}&i1={{ params.i1 }}&x2={{ params.x2 }}&y2={{ params.y2 }}&i2={{ params.i2 }}&x3={{ params.x3 }}&y3={{ params.y3 }}&i3={{ params.i3 }}"
+                         alt="Магнит өрісінің графигі" class="plot">
+                {% else %}
+                    <div style="display: grid; place-items: center; height: 100%; border: 1px dashed var(--pico-muted-border-color); border-radius: var(--pico-border-radius);">
+                        Параметрлерді енгізіп, "Салу" батырмасын басыңыз.
+                    </div>
+                {% endif %}
+            </figure>
+        </div>
+    </main>
+</body>
+</html>

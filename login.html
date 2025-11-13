@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Жүйеге кіру</title>
+</head>
+<body>
+    <main class="container" style="max-width: 500px; margin-top: 5vh;">
+        <article>
+            <h1 style="text-align: center;">Жүйеге кіру</h1>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <article class="message" data-theme="{{ 'danger' if category == 'danger' else 'success' }}">
+                            {{ message }}
+                        </article>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST">
+                <label for="username">Пайдаланушы аты
+                    <input type="text" id="username" name="username" required>
+                </label>
+                <label for="password">Құпия сөз
+                    <input type="password" id="password" name="password" required>
+                </label>
+                <button type="submit">Кіру</button>
+            </form>
+            <footer style="text-align: center;">
+                <p>Аккаунтыңыз жоқ па? <a href="{{ url_for('auth.register') }}">Тіркелу</a></p>
+                <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

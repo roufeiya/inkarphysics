@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>AC Импеданс калькуляторы</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">AC Импеданс калькуляторы</h1>
+        <p style="text-align: center;">Z = R + j(ωL - 1/ωC)</p>
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <article>
+            <form method="POST">
+                <div class="grid">
+                    <label for="R">Кедергі (R), Ом:
+                        <input type="text" id="R" name="R" value="100">
+                    </label>
+                    <label for="f">Жиілік (f), Гц:
+                        <input type="text" id="f" name="f" value="60">
+                    </label>
+                </div>
+                <div class="grid">
+                    <label for="L">Индуктивтілік (L), мГн:
+                        <input type="text" id="L" name="L" value="20">
+                    </label>
+                    <label for="C">Сыйымдылық (C), мкФ:
+                        <input type="text" id="C" name="C" value="10">
+                    </label>
+                </div>
+                <button type="submit">Есептеу</button>
+            </form>
+
+            <footer>
+                {% if error %}
+                    <p><strong style="color: var(--pico-color-red);">{{ error }}</strong></p>
+                {% endif %}
+                {% if results %}
+                    <h3>Нәтижелер:</h3>
+                    <p>Толық импеданс (Z): <strong>{{ results.Z_total_str }}</strong></p>
+                    <p>Импеданс модулі |Z|: <strong>{{ results.Z_magnitude }} Ом</strong></p>
+                    <p>Фаза ығысуы (φ): <strong>{{ results.Z_phase_deg }}°</strong></p>
+
+                    {% if results.Z_phase_deg > 0.1 %}
+                        <small>(Тізбек индуктивті: ток кернеуден қалып қалады)</small>
+                    {% elif results.Z_phase_deg < -0.1 %}
+                        <small>(Тізбек сыйымдылықты: ток кернеуден озып кетеді)</small>
+                    {% else %}
+                        <small>(<b>Резонанс!</b> Ток пен кернеу фазада)</small>
+                    {% endif %}
+                {% endif %}
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

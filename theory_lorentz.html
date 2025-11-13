@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <title>Лоренц күшінің теориясы</title>
+</head>
+<body>
+    <main class="container">
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+        <article>
+            <header>
+                <h1 style="text-align: center;">Лоренц күші</h1>
+            </header>
+
+            <p><strong>Лоренц күші</strong> – бұл электромагниттік өрісте қозғалатын нүктелік <b>q</b> зарядына әсер ететін күш.</p>
+
+            <h3>Негізгі формула</h3>
+            <p>Егер заряд <b>E</b> электр өрісінде және <b>B</b> магнит өрісінде <b>v</b> жылдамдықпен қозғалса, оған әсер ететін толық күш:</p>
+
+            <blockquote>
+                <strong>F = qE + q(v × B)</strong>
+            </blockquote>
+
+            <p>Бірінші бөлігі (<b>qE</b>) – электрлік күш. Екінші бөлігі (<b>q(v × B)</b>) – **магниттік күш** деп аталады, және біздің симулятор дәл осы күшті есептейді (E=0 деп есептейміз).</p>
+
+            <h3>Магниттік күштің қасиеттері</h3>
+
+            <blockquote>
+                <strong>F = q(v × B)</strong>
+            </blockquote>
+
+            <p>Бұл <b>векторлық көбейтінді</b> болғандықтан, Лоренц күші (<b>F</b>) әрқашан <b>жылдамдық (v)</b> векторына да, <b>магнит өрісі (B)</b> векторына да **перпендикуляр** бағытталады.</p>
+
+            <p><b>Маңызды қорытынды:</b> Күш жылдамдыққа перпендикуляр болғандықтан, ол жұмыс жасамайды (<b>A = F · s · cos(90°) = 0</b>). Яғни, магнит өрісі дененің **жылдамдығының мәнін (шамасын) өзгерте алмайды**, ол тек оның **қозғалыс бағытын** ғана өзгертеді (траекторияны қисайтады).</p>
+
+            <h3>Біздің симулятордағы жағдай:</h3>
+            <p>Біздің симуляторда магнит өрісі тек Z осі бойымен жоғары бағытталған (<b>B</b> = (0, 0, B<sub>z</sub>)).</p>
+            <ul>
+                <li>Егер заряд тек Z осі бойымен (<b>v</b> = (0, 0, v<sub>z</sub>)) қозғалса, <b>v</b> мен <b>B</b> параллель болады да, күш нөлге тең болады (<b>F</b>=0). Заряд түзу ұша береді.</li>
+                <li>Егер заряд XY жазықтығында қозғалса (мысалы, <b>v</b> = (v<sub>x</sub>, 0, 0)), күш оны Y осіне бұрады. Нәтижесінде ол **шеңбер** сызады.</li>
+                <li>Егер зарядта <b>v<sub>x</sub></b> және <b>v<sub>z</sub></b> жылдамдықтары болса, ол бір уақытта шеңбер бойымен айналып, Z осі бойымен жоғары жылжиды. Нәтижесі – **спираль** траекториясы.</li>
+            </ul>
+
+            <h3>Бейне түсіндірме (Видео)</h3>
+            <p>Бұл тақырыпты толығырақ түсіну үшін осы видеоны қараңыз:</p>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1em 0;">
+                <iframe
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--pico-border-radius);"
+                    width="560" height="315"
+                    src="https://www.youtube.com/embed/9UbtamYdaAQ"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <footer style="margin-top: 2rem;">
+                <a href="{{ url_for('e_and_m.lorentz_page') }}" role="button" class="primary">
+                    Енді 3D симуляторды байқап көріңіз &rarr;
+                </a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

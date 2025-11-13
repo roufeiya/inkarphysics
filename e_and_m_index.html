@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Электр және Магнетизм</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Электр, Магнетизм және Толқындар</h1>
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <article>
+            <header><h2>Тақырыптар</h2></header>
+            <nav>
+                <ul>
+                    <li>
+                        <strong>Электр өрісі (Кулон заңы)</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Зарядтардың өзара әрекеттесуін бақылау.</small></p>
+                        <a href="{{ url_for('e_and_m.theory_efield') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('e_and_m.simulator_page') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+
+                    <li>
+                        <strong>Магнит өрісі (Био-Савар)</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Тогы бар сымдардың магнит өрісін есептеу.</small></p>
+                        <a href="{{ url_for('e_and_m.theory_biot_savart') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('e_and_m.biot_savart_page') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+
+                    <li>
+                        <strong>RLC контуры (Өшетін тербелістер)</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Электрлік тербелістердің өшуін бақылау.</small></p>
+                        <a href="{{ url_for('e_and_m.theory_rlc') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('e_and_m.rlc_page') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+
+                    <li>
+                        <strong>Лоренц күші</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Магнит өрісіндегі зарядтың 3D траекториясы.</small></p>
+                        <a href="{{ url_for('e_and_m.theory_lorentz') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('e_and_m.lorentz_page') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+
+                    <li>
+                        <strong>AC Импеданс</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Айнымалы ток тізбегінің толық кедергісін есептеу.</small></p>
+                        <a href="{{ url_for('e_and_m.theory_impedance') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('e_and_m.impedance_calculator') }}" role="button">Калькуляторды ашу &rarr;</a>
+                    </li>
+
+                    <li>
+                        <strong>AC Резонанс</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Токтың жиілікке тәуелділігін (АЖЖ) зерттеу.</small></p>
+                        <a href="{{ url_for('e_and_m.theory_resonance') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('e_and_m.resonance_page') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+
+                    <li>
+                        <strong>Толқындық интерференция</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Екі толқын көзінің қосылу суретін көру.</small></p>
+                        <a href="{{ url_for('e_and_m.theory_interference') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('e_and_m.interference_page') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+
+                    <hr>
+                    <li>
+                        <strong>Электр бойынша ТЕСТ</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Жинаған біліміңізді тексеріңіз.</small></p>
+                        <a href="{{ url_for('main.quiz') }}" role="button" class="primary">Тестті бастау &rarr;</a>
+                    </li>
+                </ul>
+            </nav>
+        </article>
+    </main>
+</body>
+</html>

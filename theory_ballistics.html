@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <title>Баллистика теориясы</title>
+</head>
+<body>
+    <main class="container">
+        <p><a href="{{ url_for('mechanics.index') }}">&larr; Механика бөліміне оралу</a></p>
+
+        <article>
+            <header>
+                <h1 style="text-align: center;">Баллистикалық қозғалыс теориясы</h1>
+            </header>
+
+            <p><strong>Баллистикалық қозғалыс</strong> – бұл тек ауырлық күшінің әсерінен қозғалатын дененің қозғалысы. Біздің симуляторда қарапайым болуы үшін ауа кедергісі ескерілмейді.</p>
+
+            <h3>Негізгі формулалар</h3>
+            <p>Дене <b>v₀</b> бастапқы жылдамдықпен горизонтқа <b>θ</b> бұрыш жасай атылсын. Еркін түсу үдеуі <b>g</b> (шамамен 9.81 м/с²).</p>
+
+            <p><b>1. Қозғалыс теңдеулері (уақытқа тәуелді):</b></p>
+            <ul>
+                <li>Горизонталь (X осі): <b>x(t) = (v₀ · cos(θ)) · t</b></li>
+                <li>Вертикаль (Y осі): <b>y(t) = (v₀ · sin(θ)) · t - (1/2)gt²</b></li>
+            </ul>
+
+            <p><b>2. Ұшудың толық уақыты (T):</b></p>
+            <blockquote>
+                <strong>T = (2v₀ · sin(θ)) / g</strong>
+            </blockquote>
+
+            <p><b>3. Максималды ұшу қашықтығы (L):</b></p>
+            <blockquote>
+                <strong>L = (v₀² · sin(2θ)) / g</strong>
+            </blockquote>
+
+            <p><b>4. Максималды көтерілу биіктігі (H):</b></p>
+            <blockquote>
+                <strong>H = (v₀ · sin(θ))² / (2g)</strong>
+            </blockquote>
+
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ideal_projectile_motion_for_different_angles.svg/600px-Ideal_projectile_motion_for_different_angles.svg.png"
+                     alt="Баллистикалық траектория диаграммасы">
+                <figcaption>Әр түрлі бұрыштар (θ) үшін траекториялар. Ең алысқа 45° ұшатынын көріңіз.</figcaption>
+            </figure>
+
+            <h3>Бейне түсіндірме (Видео)</h3>
+            <p>Бұл құбылысты толығырақ түсіну үшін осы видеоны қараңыз:</p>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1em 0;">
+                <iframe
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--pico-border-radius);"
+                    width="560" height="315"
+                    src="https://www.youtube.com/embed/Lvds6z0SRpI"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <footer style="margin-top: 2rem;">
+                <a href="{{ url_for('mechanics.ballistics') }}" role="button" class="primary">
+                    Енді симуляторды байқап көріңіз &rarr;
+                </a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

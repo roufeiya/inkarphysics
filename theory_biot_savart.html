@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Магнит өрісінің теориясы</title>
+</head>
+<body>
+    <main class="container">
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+        <article>
+            <header>
+                <h1 style="text-align: center;">Магнит өрісі және Био-Савар заңы</h1>
+            </header>
+
+            <p><strong>Магнит өрісі</strong> – бұл қозғалыстағы электр зарядтарының (яғни, электр тогының) айналасында пайда болатын өріс. Ол басқа қозғалыстағы зарядтарға (токтарға) күшпен әсер етеді.</p>
+
+            <h3>1. Био-Савар-Лаплас заңы</h3>
+            <p>Бұл заң өткізгіштің кез келген кішкентай $d\vec{l}$ элементінен $I$ тогы аққанда, $r$ қашықтықта пайда болатын $d\vec{B}$ магнит өрісін анықтайды. Біздің симулятордағы ұзын, түзу сым үшін формула анағұрлым қарапайым:</p>
+            <blockquote>
+                <strong>B = (μ₀ · I) / (2π · r)</strong>
+            </blockquote>
+            <p>Мұндағы:</p>
+            <ul>
+                <li><b>B</b> - магнит индукциясы (Тесла)</li>
+                <li><b>μ₀</b> - магниттік тұрақты</li>
+                <li><b>I</b> - ток күші (Ампер)</li>
+                <li><b>r</b> - сымнан нүктеге дейінгі қашықтық</li>
+            </ul>
+
+            <h3>2. "Оң қол" ережесі (Бұрғы ережесі)</h3>
+            <p>Магнит өрісінің (B) бағыты "оң қол" ережесімен анықталады: Егер оң қолдың бас бармағы ток (I) бағытымен бағытталса, онда бүгілген төрт саусақ магнит өрісінің күш сызықтарының бағытын көрсетеді (яғни, сағат тіліне қарсы немесе бағыттас құйындар).</p>
+
+            <h3>3. Суперпозиция принципі</h3>
+            <p>Біздің симулятордағыдай, егер өрісті бірнеше ток көзі (сымдар) тудырса, онда кез келген нүктедегі қорытқы магнит өрісі (<b>B</b>) әрбір сымның жеке-жеке тудыратын өрістерінің <b>векторлық</b> қосындысына тең болады.</p>
+
+            <h3>Бейне түсіндірме (Видео)</h3>
+            <p>Бұл тақырыпты толығырақ түсіну үшін осы видеоны қараңыз:</p>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1em 0;">
+                <iframe
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--pico-border-radius);"
+                    width="560" height="315"
+                    src="https://www.youtube.com/embed/8Z6j_SmLbBA"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <footer style="margin-top: 2rem;">
+                <a href="{{ url_for('e_and_m.biot_savart_page') }}" role="button" class="primary">
+                    Енді симуляторды байқап көріңіз &rarr;
+                </a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

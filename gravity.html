@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Гравитация Симуляторы</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Планетарлық Қозғалыс (Гравитация)</h1>
+        <p><a href="{{ url_for('mechanics.index') }}">&larr; Механика бөліміне оралу</a></p>
+
+        <div class="grid">
+            <article>
+                <header>Планетаның параметрлері (Күн ортада: 0,0)</header>
+                <form>
+                    <label for="x0-slider">Бастапқы қашықтық (X осі), (шартты бірлік):
+                        <span id="x0-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.x0 }}</span>
+                    </label>
+                    <input type="range" id="x0-slider" name="x0" min="5" max="20" value="{{ params.x0 }}" step="1">
+
+                    <label for="vy0-slider">Бастапқы Y-жылдамдығы (v<sub>y</sub>), (шартты бірлік):
+                        <span id="vy0-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.vy0 }}</span>
+                    </label>
+                    <input type="range" id="vy0-slider" name="vy0" min="0.1" max="2.0" value="{{ params.vy0 }}" step="0.05">
+                </form>
+                <footer>
+                    <small><b>Кеңес:</b> Жылдамдықты (v<sub>y</sub>) өзгертіп көріңіз.
+                        <ul>
+                            <li>Төмен жылдамдық: планета Күнге құлайды.</li>
+                            <li>Орташа жылдамдық: тұрақты эллипс/шеңбер.</li>
+                            <li>Жоғары жылдамдық: планета ұшып кетеді (гипербола).</li>
+                        </ul>
+                    </small>
+                </footer>
+            </article>
+
+            <figure style="margin: 0;">
+                <img src="{{ url_for('mechanics.plot_gravity_png') }}?x0={{ params.x0 }}&vy0={{ params.vy0 }}"
+                     alt="Орбита графигі" class="plot" id="plot-image">
+            </figure>
+        </div>
+    </main>
+
+    <script>
+        const x0Slider = document.getElementById('x0-slider');
+        const vy0Slider = document.getElementById('vy0-slider');
+
+        const x0ValueText = document.getElementById('x0-value');
+        const vy0ValueText = document.getElementById('vy0-value');
+
+        const plotImage = document.getElementById('plot-image');
+
+        function updatePlot() {
+            const x0 = x0Slider.value;
+            const vy0 = vy0Slider.value;
+
+            x0ValueText.innerText = x0;
+            vy0ValueText.innerText = vy0;
+
+            const newImageUrl = `{{ url_for('mechanics.plot_gravity_png') }}?x0=${x0}&vy0=${vy0}`;
+            plotImage.src = newImageUrl;
+        }
+
+        x0Slider.addEventListener('input', updatePlot);
+        vy0Slider.addEventListener('input', updatePlot);
+    </script>
+</body>
+</html>

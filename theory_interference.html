@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Толқындық интерференция теориясы</title>
+</head>
+<body>
+    <main class="container">
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+        <article>
+            <header>
+                <h1 style="text-align: center;">Толқындық Интерференция</h1>
+            </header>
+
+            <p><strong>Интерференция</strong> – бұл екі немесе одан да көп когерентті (яғни, жиіліктері мен фаза айырымдары тұрақты) толқындардың кеңістікте қабаттасуы (суперпозициясы) нәтижесінде қорытқы толқын амплитудасының тұрақты түрде күшеюі немесе әлсіреуі.</p>
+
+            <h3>Суперпозиция принципі</h3>
+            <p>Кеңістіктің кез келген нүктесінде екі толқын кездескенде, қорытқы тербеліс (<b>Wave<sub>total</sub></b>) олардың жеке-жеке тербелістерінің (<b>Wave₁</b>, <b>Wave₂</b>) қосындысына тең болады. Біздің симулятордағы сурет дәл осы қосындының интенсивтілігін (амплитуда квадратын) көрсетеді.</p>
+
+            <h3>Максимум және Минимум шарттары</h3>
+            <p>Екі толқын көзінен (S₁ және S₂) шыққан толқындар белгілі бір A нүктесіне жеткенде, олардың арасында <b>жол айырымы (Δd = r₁ - r₂)</b> пайда болады.</p>
+
+            <ol>
+                <li><b>Максимум (Күшейту):</b> Егер жол айырымы толқын ұзындығының (<b>λ</b>) бүтін санына тең болса, толқындар "бір фазада" келіп, бір-бірін күшейтеді:
+                <blockquote><strong>Δd = mλ</strong> (мұндағы m = 0, 1, 2, ...)</blockquote>
+                </li>
+                <li><b>Минимум (Әлсірету):</b> Егер жол айырымы толқын ұзындығының жартылай бүтін санына тең болса, толқындар "қарсы фазада" келіп, бір-бірін жояды:
+                <blockquote><strong>Δd = (m + 1/2)λ</strong> (мұндағы m = 0, 1, 2, ...)</blockquote>
+                </li>
+            </ol>
+
+            <p>Нәтижесінде біз ашық (максимум) және қараңғы (минимум) жолақтардан тұратын әдемі интерференциялық суретті аламыз.</p>
+
+            <h3>Бейне түсіндірме (Видео)</h3>
+            <p>Бұл тақырыпты толығырақ түсіну үшін осы видеоны қараңыз:</p>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1em 0;">
+                <iframe
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--pico-border-radius);"
+                    width="560" height="315"
+                    src="https://www.youtube.com/embed/69XoL1sJv3w"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <footer style="margin-top: 2rem;">
+                <a href="{{ url_for('e_and_m.interference_page') }}" role="button" class="primary">
+                    Енді симуляторды байқап көріңіз &rarr;
+                </a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

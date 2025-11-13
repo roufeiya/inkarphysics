@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Физика бойынша викторина</title>
+</head>
+<body>
+    <main class="container">
+        <article>
+            <header>
+                <h2>{{ question_number }}-сұрақ:</h2>
+            </header>
+
+            <p style="font-size: 1.1em; font-weight: bold;">{{ question.question }}</p>
+
+            <form method="POST">
+                <fieldset>
+                    {% for option in question.options %}
+                        <label for="option-{{ loop.index }}">
+                            <input type="radio" id="option-{{ loop.index }}" name="option" value="{{ option }}" required>
+                            {{ option }}
+                        </label>
+                    {% endfor %}
+                </fieldset>
+                <button type="submit">Жауап беру</button>
+            </form>
+
+            <footer>
+                <a href="{{ url_for('main.calculators') }}">&larr; Басты бетке</a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

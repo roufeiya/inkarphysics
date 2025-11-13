@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>RLC Тізбегінің Симуляторы</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">RLC Тізбегінің Симуляторы (Тербелістер)</h1>
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <div class="grid">
+            <article>
+                <header>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Series_RLC_circuit.svg/320px-Series_RLC_circuit.svg.png"
+                         alt="RLC тізбегінің схемасы" style="width: 100%; border-radius: var(--pico-border-radius);">
+                </header>
+
+                <form>
+                    <label for="R-slider">Кедергі (R), Ом:
+                        <span id="R-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.R }}</span>
+                    </label>
+                    <input type="range" id="R-slider" name="R" min="0" max="50" value="{{ params.R }}" step="0.5">
+
+                    <label for="L-slider">Индуктивтілік (L), Генри:
+                        <span id="L-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.L }}</span>
+                    </label>
+                    <input type="range" id="L-slider" name="L" min="1" max="100" value="{{ params.L }}" step="1">
+
+                    <label for="C-slider">Сыйымдылық (C), мФ (миллиФарад):
+                        <span id="C-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.C }}</span>
+                    </label>
+                    <input type="range" id="C-slider" name="C" min="0.1" max="20" value="{{ params.C }}" step="0.1">
+                </form>
+            </article>
+
+            <figure style="margin: 0;">
+                <img src="{{ url_for('e_and_m.plot_rlc_png') }}?R={{ params.R }}&L={{ params.L }}&C={{ params.C }}"
+                     alt="RLC тербелістер графигі" class="plot" id="plot-image">
+            </figure>
+        </div>
+    </main>
+
+    <script>
+        const rSlider = document.getElementById('R-slider');
+        const lSlider = document.getElementById('L-slider');
+        const cSlider = document.getElementById('C-slider');
+        const rValueText = document.getElementById('R-value');
+        const lValueText = document.getElementById('L-value');
+        const cValueText = document.getElementById('C-value');
+        const plotImage = document.getElementById('plot-image');
+
+        function updatePlot() {
+            const r = rSlider.value;
+            const l = lSlider.value;
+            const c = cSlider.value;
+            rValueText.innerText = r;
+            lValueText.innerText = l;
+            cValueText.innerText = c;
+            const newImageUrl = `{{ url_for('e_and_m.plot_rlc_png') }}?R=${r}&L=${l}&C=${c}`;
+            plotImage.src = newImageUrl;
+        }
+
+        rSlider.addEventListener('input', updatePlot);
+        lSlider.addEventListener('input', updatePlot);
+        cSlider.addEventListener('input', updatePlot);
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Гравитация теориясы</title>
+</head>
+<body>
+    <main class="container">
+        <p><a href="{{ url_for('mechanics.index') }}">&larr; Механика бөліміне оралу</a></p>
+        <article>
+            <header>
+                <h1 style="text-align: center;">Планетарлық қозғалыс және Гравитация</h1>
+            </header>
+
+            <p><strong>Бүкіләлемдік тартылыс заңы (Гравитация)</strong> – бұл кез келген екі дененің (массалары <b>M</b> және <b>m</b>) бір-бірін олардың массаларына тура пропорционал және арақашықтығының (<b>r</b>) квадратына кері пропорционал күшпен тартатынын сипаттайтын іргелі заң.</p>
+
+            <h3>1. Ньютонның тартылыс заңы</h3>
+            <p>Екі дененің арасындағы тартылыс күші (<b>F</b>) мына формуламен өрнектеледі:</p>
+
+            <blockquote>
+                <strong>F = G · (M · m) / r²</strong>
+            </blockquote>
+            <p>Мұндағы <b>G</b> – гравитациялық тұрақты.</p>
+
+            <h3>2. Екі дене есебі (Симулятор моделі)</h3>
+            <p>Біздің симуляторда "екі дене есебі" деп аталатын қарапайымдалған модель қолданылады:</p>
+            <ul>
+                <li><b>Күн (M)</b> – өте ауыр, ол орнында қозғалмай тұр деп есептейміз (координата (0,0)).</li>
+                <li><b>Планета (m)</b> – одан әлдеқайда жеңіл, ол Күннің тартылыс күшінің әсерінен қозғалады.</li>
+            </ul>
+            <p>Планетаның үдеуі (<b>a</b>) Ньютонның екінші заңы (<b>F=ma</b>) бойынша:</p>
+            <blockquote>
+                <strong>a = F / m = (G · M) / r²</strong>
+            </blockquote>
+            <p>Бұл күш әрқашан планетадан Күнге қарай бағытталған. Python (`scipy`) осы үдеуді пайдаланып, планетаның келесі сәттегі орнын есептейді де, толық траекторияны (орбитаны) сызады.</p>
+
+            <h3>3. Орбита түрлері</h3>
+            <p>Планетаның бастапқы жылдамдығы (<b>v</b>) оның болашақ траекториясын толығымен анықтайды:</p>
+            <ul>
+                <li><b>Төмен жылдамдық:</b> Тартылыс күші басым болады, планета Күнге құлайды (спираль).</li>
+                <li><b>Бірінші ғарыштық жылдамдық:</b> Планета тұрақты <b>шеңбер</b> орбитаға шығады.</li>
+                <li><b>Орташа жылдамдық:</b> Планета тұрақты <b>эллипс</b> орбитасымен қозғалады.</li>
+                <li><b>Екінші ғарыштық жылдамдық (Параболалық):</b> Планета Күннің тартылыс өрісінен "қашып шығады" және ешқашан оралмайды.</li>
+                <li><b>Өте жоғары жылдамдық (Гиперболалық):</b> Планета одан да жылдам ұшып кетеді.</li>
+            </ul>
+
+            <h3>Бейне түсіндірме (Видео)</h3>
+            <p>Бұл тақырыпты толығырақ түсіну үшін осы видеоны қараңыз:</p>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1em 0;">
+                <iframe
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--pico-border-radius);"
+                    width="560" height="315"
+                    src="https://www.youtube.com/embed/MTY1Kje0yLg"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <footer style="margin-top: 2rem;">
+                <a href="{{ url_for('mechanics.gravity') }}" role="button" class="primary">
+                    Енді симуляторды байқап көріңіз &rarr;
+                </a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Баллистика Симуляторы</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Атылған дененің траекториясы</h1>
+        <p><a href="{{ url_for('mechanics.index') }}">&larr; Механика бөліміне оралу</a></p>
+
+        <div class="grid">
+            <article>
+                <header>Параметрлерді енгізіңіз:</header>
+                <form method="POST">
+                    <label for="v0">Бастапқы жылдамдық (v₀), м/с:
+                        <input type="text" id="v0" name="v0" value="{{ params.v0 }}">
+                    </label>
+                    <label for="theta">Ату бұрышы (θ), градус:
+                        <input type="text" id="theta" name="theta" value="{{ params.theta }}">
+                    </label>
+
+                    <button type="submit">Траекторияны есептеу</button>
+                </form>
+                 <footer>
+                    <small><b>Кеңес:</b> Ең алысқа ұшу үшін 45° бұрышты байқап көріңіз.</small>
+                </footer>
+            </article>
+
+            <figure style="margin: 0;">
+                {% if params %}
+                    <img src="{{ url_for('mechanics.plot_ballistics_png') }}?v0={{ params.v0 }}&theta={{ params.theta }}"
+                         alt="Баллистикалық траектория" class="plot">
+                {% else %}
+                    <div style="display: grid; place-items: center; height: 100%; border: 1px dashed var(--pico-muted-border-color); border-radius: var(--pico-border-radius);">
+                        Параметрлерді енгізіп, "Есептеу" батырмасын басыңыз.
+                    </div>
+                {% endif %}
+            </figure>
+        </div>
+    </main>
+</body>
+</html>

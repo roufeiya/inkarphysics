@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>AC Импеданс теориясы</title>
+</head>
+<body>
+    <main class="container">
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+        <article>
+            <header>
+                <h1 style="text-align: center;">AC Импеданс (Айнымалы ток кедергісі)</h1>
+            </header>
+
+            <p><strong>Импеданс (Z)</strong> – бұл айнымалы ток (AC) тізбегіндегі токқа көрсететін толық кедергі. Ол жай ғана резистордың кедергісінен (R) бөлек, катушканың (L) және конденсатордың (C) жиілікке тәуелді реактивті кедергілерін де қамтиды.</p>
+
+            <h3>Неліктен Комплексті Сандар?</h3>
+            <p>Айнымалы ток тербеліс болғандықтан, оны сипаттау үшін комплексті сандар өте ыңғайлы. Импеданс екі бөліктен тұрады: <b>Активті кедергі (R)</b> және <b>Реактивті кедергі (X)</b>.</p>
+
+            <blockquote>
+                <strong>Z = R + jX</strong>
+            </blockquote>
+            <p>Мұндағы <b>j</b> – жорамал бірлік.</p>
+
+            <h3>Компоненттердің Импедансы</h3>
+            <p>Жиілік $\omega = 2\pi f$ болғанда:</p>
+            <ul>
+                <li><b>Резистор (R):</b> $Z_R = R$ (Тек активті кедергі)</li>
+                <li><b>Катушка (L):</b> $Z_L = j\omega L$ (Тек реактивті кедергі)</li>
+                <li><b>Конденсатор (C):</b> $Z_C = \frac{1}{j\omega C} = -\frac{j}{\omega C}$ (Тек реактивті кедергі)</li>
+            </ul>
+
+            <h3>Жалпы Импеданс (RLC тізбегі)</h3>
+            <p>Тізбектей жалғанғанда, олар жай қосылады:</p>
+            <blockquote>
+                <strong>Z<sub>total</sub> = Z<sub>R</sub> + Z<sub>L</sub> + Z<sub>C</sub> = R + j(ωL - 1/ωC)</strong>
+            </blockquote>
+
+            <p>Біздің калькулятор осы формуланы есептейді. Нәтижеде екі маңызды шама шығады:</p>
+            <ol>
+                <li><b>Импеданс модулі |Z|:</b> Бұл тізбектің толық кедергісі, $ |Z| = \sqrt{R^2 + (\omega L - 1/\omega C)^2} $.</li>
+                <li><b>Фаза ығысуы (φ):</b> Бұл ток пен кернеу арасындағы уақыттық айырмашылықты көрсетеді.</li>
+            </ol>
+
+            <h3>Бейне түсіндірме (Видео)</h3>
+            <p>Бұл тақырыпты толығырақ түсіну үшін осы видеоны қараңыз:</p>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1em 0;">
+                <iframe
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--pico-border-radius);"
+                    width="560" height="315"
+                    src="https://www.youtube.com/embed/pxYikM1lZ50"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <footer style="margin-top: 2rem;">
+                <a href="{{ url_for('e_and_m.impedance_calculator') }}" role="button" class="primary">
+                    Енді калькуляторды байқап көріңіз &rarr;
+                </a>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* Жаңа "Inter" шрифтін және негізгі өлшемді орнату */
+        :root {
+            --pico-font-family: 'Inter', system-ui, sans-serif;
+            --pico-font-size: 15px; /* Стандартты 16px-дан кіші */
+
+            /* ЖАҢА ТҮС: Күлгін (Фиолетовый) */
+            --pico-primary: #5e35b1; /* Негізгі түс */
+            --pico-primary-hover: #673ab7;
+            --pico-primary-focus: rgba(94, 53, 177, 0.25);
+            --pico-primary-inverse: #fff;
+        }
+
+        /* Тақырыптарды (h1, h2) кішірейту */
+        h1 { font-size: 2.1rem; }
+        h2 { font-size: 1.65rem; }
+        h3 { font-size: 1.35rem; }
+        h4 { font-size: 1.15rem; }
+
+        /* "Hero" блогын әдемілеу (градиент) */
+        .hero {
+            background: linear-gradient(180deg,
+                var(--pico-secondary-background),
+                var(--pico-card-background-color)
+            );
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-radius: var(--pico-border-radius);
+            margin-bottom: 2rem;
+        }
+        .hero hgroup { margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 2.5rem; } /* Hero ішінде сәл үлкенірек */
+        .hero h2 { font-size: 1.2rem; font-weight: 400; color: var(--pico-secondary-text); }
+
+        /* Иконкалар стилі */
+        .icon {
+            margin-right: 0.75rem;
+            color: var(--pico-primary);
+            width: 24px; /* Иконкалардың бірдей орын алуы үшін */
+        }
+
+        /* Жаңа "Карточка" стилі (көлеңкесімен) */
+        .module-card {
+            /* <article> тегін қолданамыз, бірақ оған қосымша стиль береміз */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: var(--pico-shadow);
+        }
+
+        /* Тышқанды апарғанда "көтерілу" эффектісі */
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--pico-shadow-hover);
+        }
+
+    </style>
+
+    <title>PhysicLab - Интерактивті физика</title>
+</head>
+<body>
+
+    <main class="container">
+
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{{ url_for('main.calculators') }}" style="text-decoration: none;">
+                            <h2 style="margin: 0;">
+                                <i class="fa-solid fa-atom icon"></i>PhysicLab
+                            </h2>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    {% if current_user.is_authenticated %}
+                        <li>
+                            <details role="list" dir="rtl">
+                                <summary aria-haspopup="listbox" role="link">
+                                    Сәлем, <strong>{{ current_user.username }}</strong>
+                                </summary>
+                                <ul role="listbox">
+                                    <li><a href="{{ url_for('auth.logout') }}">Шығу</a></li>
+                                </ul>
+                            </details>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.login') }}" role="button" class="secondary outline">Кіру</a></li>
+                        <li><a href="{{ url_for('auth.register') }}" role="button">Тіркелу</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <hgroup>
+                <h1>Интерактивті Физика Әлемі</h1>
+                <h2>Физиканы оқып қана қоймай, оны "тірідей" сезініңіз.</h2>
+            </hgroup>
+            <p>
+                Бұл – Python (Flask, NumPy, SciPy) арқылы құрастырылған ғылыми симуляторлар жинағы.
+                Төмендегі бөлімдерді таңдап, зерттеуді бастаңыз!
+            </p>
+        </section>
+
+        <article class="module-card">
+            <header>
+                <h2>
+                    <i class="fa-solid fa-gears icon"></i>Механика Бөлімі
+                </h2>
+            </header>
+            <p>Классикалық механиканың негізгі симуляторлары: Баллистика, Серіппелі тербелістер және Гравитация.</p>
+            <a href="{{ url_for('mechanics.index') }}" role="button" class="primary">
+                Механика бөліміне өту &rarr;
+            </a>
+        </article>
+
+        <article class="module-card">
+            <header>
+                <h2>
+                    <i class="fa-solid fa-bolt-lightning icon"></i>Электр, Магнетизм және Толқындар
+                </h2>
+            </header>
+            <p>Электромагнетизм, тербелістер, оптика симуляторлары және тест.</p>
+            <a href="{{ url_for('e_and_m.index') }}" role="button" class="primary">
+                E&M Бөліміне өту &rarr;
+            </a>
+        </article>
+
+        <article>
+            <header>
+                <h3>
+                    <i class="fa-solid fa-calculator icon"></i>Жедел Калькуляторлар
+                </h3>
+            </header>
+
+            <h4 style="margin-top: 1rem;">Ом заңының калькуляторы (I = U / R)</h4>
+            <form method="POST">
+                <div class="grid">
+                    <label for="voltage">Кернеу (U), Вольт:
+                        <input type="text" id="voltage" name="voltage">
+                    </label>
+                    <label for="resistance">Кедергі (R), Ом:
+                        <input type="text" id="resistance" name="resistance">
+                    </label>
+                </div>
+                <button type="submit" name="calculate_ohm">Токты (I) есептеу</button>
+                <footer>
+                    {% if result_current is not none %}
+                        <p><strong>Нәтиже: Ток күші (I) = {{ result_current }} Ампер</strong></p>
+                    {% endif %}
+                    {% if error_message %}
+                        <p><strong style="color: var(--pico-color-red);">{{ error_message }}</strong></p>
+                    {% endif %}
+                </footer>
+            </form>
+
+            <hr>
+
+            <h4>Кедергілер калькуляторы (R1, R2)</h4>
+            <form method="POST">
+                <div class="grid">
+                    <label for="r1">Резистор 1 (R1), Ом:
+                        <input type="text" id="r1" name="r1">
+                    </label>
+                    <label for="r2">Резистор 2 (R2), Ом:
+                        <input type="text" id="r2" name="r2">
+                    </label>
+                </div>
+                <label for="connection_type">Жалғану түрі:</label>
+                <select id="connection_type" name="connection_type">
+                    <option value="series">Тізбектей (R = R1 + R2)</option>
+                    <option value="parallel">Параллель (R = (R1*R2)/(R1+R2))</option>
+                </select>
+                <button type="submit" name="calculate_resistors">Жалпы (R) есептеу</button>
+                <footer>
+                    {% if result_resistance is not none %}
+                        <p><strong>Нәтиже: Жалпы R = {{ result_resistance }} Ом</strong></p>
+                    {% endif %}
+                    {% if error_resistance %}
+                        <p><strong style="color: var(--pico-color-red);">{{ error_resistance }}</strong></p>
+                    {% endif %}
+                </footer>
+            </form>
+        </article>
+    </main>
+
+    <footer class="container">
+        <hr>
+        <div style="text-align: center; padding: 2rem 0;">
+            <hgroup>
+                <h3>Бізбен байланыс</h3>
+                <p>Сайт авторы: <strong>Әубекер Іңкәр</strong></p>
+            </hgroup>
+            <p>
+                Ұсыныстар мен сұрақтар бойынша:<br>
+                <a href="mailto:inkaraubakerovaa@gmail.com">inkaraubakerovaa@gmail.com</a>
+            </p>
+            <small>© 2025 PhysicLab. Барлық құқықтар қорғалған.</small>
+        </div>
+    </footer>
+
+</body>
+</html>

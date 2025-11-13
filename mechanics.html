@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Механика Бөлімі</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Механика Бөлімі</h1>
+        <p><a href="{{ url_for('main.calculators') }}">&larr; Басты бетке оралу</a></p>
+
+        <article>
+            <header><h2>Тақырыптар</h2></header>
+            <nav>
+                <ul>
+                    <li>
+                        <strong>Атылған дененің траекториясы (Баллистика)</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Дененің ауасыз кеңістіктегі ұшу жолын есептеу.</small></p>
+                        <a href="{{ url_for('mechanics.theory_ballistics') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('mechanics.ballistics') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+
+                    <li>
+                        <strong>Серіппелі маятник (Өшетін тербелістер)</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Массаның, қатаңдықтың және кедергінің тербеліске әсерін бақылау.</small></p>
+                        <a href="{{ url_for('mechanics.theory_spring') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('mechanics.spring') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+
+                    <li>
+                        <strong>Планетарлық қозғалыс (Гравитация)</strong>
+                        <p style="margin-bottom: 0.5rem;"><small>Бастапқы жылдамдыққа байланысты орбита түрлерін зерттеу.</small></p>
+                        <a href="{{ url_for('mechanics.theory_gravity') }}" role="button" class="secondary outline">Теорияны оқу</a>
+                        <a href="{{ url_for('mechanics.gravity') }}" role="button">Симуляторды ашу &rarr;</a>
+                    </li>
+                </ul>
+            </nav>
+        </article>
+    </main>
+</body>
+</html>

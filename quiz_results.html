@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Викторина нәтижелері</title>
+</head>
+<body>
+    <main class="container" style="text-align: center;">
+        <article>
+            <header>
+                <h1>Тест аяқталды!</h1>
+            </header>
+
+            <p style="font-size: 1.5em;">Сіздің нәтижеңіз:</p>
+            <h2 style="font-size: 3em; margin: 0;">{{ score }} / {{ total }}</h2>
+
+            <footer>
+                <div class="grid">
+                    <a href="{{ url_for('main.calculators') }}" role="button" class="secondary">Басты бетке</a>
+                    <a href="{{ url_for('main.quiz_reset') }}" role="button" class="primary">Қайта өту</a>
+                </div>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>

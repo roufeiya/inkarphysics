@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Серіппелі маятник симуляторы</title>
+</head>
+<body>
+    <main class="container">
+        <h1 style="text-align: center;">Серіппелі маятниктің өшетін тербелісі</h1>
+        <p><a href="{{ url_for('mechanics.index') }}">&larr; Механика бөліміне оралу</a></p>
+
+        <div class="grid">
+            <article>
+                <header>Параметрлерді таңдаңыз:</header>
+                <form>
+                    <label for="m-slider">Масса (m), кг:
+                        <span id="m-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.m }}</span>
+                    </label>
+                    <input type="range" id="m-slider" name="m" min="0.1" max="10" value="{{ params.m }}" step="0.1">
+
+                    <label for="k-slider">Қатаңдық (k), Н/м:
+                        <span id="k-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.k }}</span>
+                    </label>
+                    <input type="range" id="k-slider" name="k" min="1" max="100" value="{{ params.k }}" step="1">
+
+                    <label for="b-slider">Өшу коэффициенті (b):
+                        <span id="b-value" style="color: var(--pico-color-primary); font-weight: bold;">{{ params.b }}</span>
+                    </label>
+                    <input type="range" id="b-slider" name="b" min="0" max="5" value="{{ params.b }}" step="0.1">
+                </form>
+                <footer>
+                    <small><b>Кеңес:</b> Өшуді (b) нөлге қойып, таза (өшпейтін) тербелісті көріңіз. Содан кейін b-ны біртіндеп арттырыңыз.</small>
+                </footer>
+            </article>
+
+            <figure style="margin: 0;">
+                <img src="{{ url_for('mechanics.plot_spring_png') }}?m={{ params.m }}&k={{ params.k }}&b={{ params.b }}"
+                     alt="Тербеліс графигі" class="plot" id="plot-image">
+            </figure>
+        </div>
+    </main>
+
+    <script>
+        const mSlider = document.getElementById('m-slider');
+        const kSlider = document.getElementById('k-slider');
+        const bSlider = document.getElementById('b-slider');
+
+        const mValueText = document.getElementById('m-value');
+        const kValueText = document.getElementById('k-value');
+        const bValueText = document.getElementById('b-value');
+
+        const plotImage = document.getElementById('plot-image');
+
+        function updatePlot() {
+            const m = mSlider.value;
+            const k = kSlider.value;
+            const b = bSlider.value;
+
+            mValueText.innerText = m;
+            kValueText.innerText = k;
+            bValueText.innerText = b;
+
+            const newImageUrl = `{{ url_for('mechanics.plot_spring_png') }}?m=${m}&k=${k}&b=${b}`;
+            plotImage.src = newImageUrl;
+        }
+
+        mSlider.addEventListener('input', updatePlot);
+        kSlider.addEventListener('input', updatePlot);
+        bSlider.addEventListener('input', updatePlot);
+    </script>
+</body>
+</html>
